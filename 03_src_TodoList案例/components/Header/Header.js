@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { nanoid } from 'nanoid'
 import "./Header.css"
 
@@ -28,5 +29,9 @@ export default class Header extends Component {
     this.props.addTodo(todoObj)
     //清空输入
     target.value = ""
+  }
+  //对接收的props进行类型和必要性的限制
+  static propType = {
+    addTodo:PropTypes.func.isRequired
   }
 }
