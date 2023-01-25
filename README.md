@@ -25,3 +25,8 @@ npm install -g json-server
 }
 
 3.在db.json文件的目录下执行json-server --watch db.json 来启动服务
+
+项目中安装axios
+npm install axios
+
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/1.2.3/axios.min.js"></script>
