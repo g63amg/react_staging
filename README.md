@@ -30,3 +30,12 @@ npm install -g json-server
 npm install axios
 
 <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.2.3/axios.min.js"></script>
+
+脚手架配置代理：
+1.在package.json 里做配置"proxy":"http://localhost:3000" 然后停一下脚手架，重启，但不能配置多个代理
+数据交互跨域问题
+比如http://localhost:3000/想要请求 http://localhost:5000/上的数据，就存在跨域问题，
+这个请求的过程：3000可以把请求发送出去，但是5000返回来的数据无法接收，产生跨域的本质问题是因为ajax引擎的同源策略
+这时候要找个中间人（代理服务器，也是开在3000端口上），代理服务器没有ajax引擎，可以请求转发
+
+2.编写setupProxy.js配置具体代理规则
