@@ -39,3 +39,8 @@ npm install axios
 这时候要找个中间人（代理服务器，也是开在3000端口上），代理服务器没有ajax引擎，可以请求转发
 
 2.编写setupProxy.js配置具体代理规则
+
+ES6小知识点
+const {a} = obj  传统结构赋值
+const {a:{b}} = obj  连续结构赋值
+const {a:{b:value}} = obj  连续结构赋值+重命名
