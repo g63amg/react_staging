@@ -45,7 +45,7 @@ render() {
         )
     }
 /*
-如果路由是多级的第一次加载完之后再刷新页面，会出现样式丢失，解决办法：
+如果路由是多级的，会出现样式丢失，解决办法：
 1.index.html里<link rel="stylesheet" href="./css/bootstrap.min.css"> 删掉/css/前边的.（点）   (常用)
 2.index.html里<link rel="stylesheet" href="%PUBLIC_URL%/css/bootstrap.min.css"> 把.（点）改成%PUBLIC_URL%   (常用)
 3.index.js里改路由的模式，把BrowserRouter改成HashRouter(很少用这种方法)

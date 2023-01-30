@@ -3,6 +3,7 @@ import {Route,Switch} from 'react-router-dom'
 import Home from './pages/Home/Home' //Home是路由组件
 import About from './pages/About/About'//About是路由组件
 import Header from './components/Header/Header' //Header是一般组件
+import Test from './components/Test/Test'
 import MyNavLink from './components/MyNavLink/MyNavLink'
 
 
@@ -24,8 +25,8 @@ render() {
                         <a href="./home.html" class="list-group-item active">Home</a> */}
 
 						{/* 在React中靠路由链接实现切换组件 --编写路由链接*/}
-						<MyNavLink to="/atguigu/about">About</MyNavLink>
-						<MyNavLink to="/atguigu/home">Home</MyNavLink>
+						<MyNavLink to="/about">About</MyNavLink>
+						<MyNavLink to="/home">Home</MyNavLink>
                         {/* activeClassName="active"如果要加的高亮的class名是active，这句就可以不写了，要加高亮的class名是其他的名字，写成activeClassName="active"*/}
                     </div>
                 </div>
@@ -34,8 +35,9 @@ render() {
                         <div className="panel-body">
 							{/* 注册路由,注册路由的时候用Switch包一下，这样不会匹配到重复的路由,注意一个以上的路由再包Switch */}
                             <Switch>
-                                <Route path="/atguigu/about" component={About}/>
-                                <Route path="/atguigu/home" component={Home}/>
+                                <Route path="/about" component={About}/>
+                                <Route path="/home" component={Home}/>
+                                <Route path="/home" component={Test}/>
                             </Switch>
                         </div>
                     </div>
@@ -45,9 +47,43 @@ render() {
         )
     }
 /*
-如果路由是多级的第一次加载完之后再刷新页面，会出现样式丢失，解决办法：
-1.index.html里<link rel="stylesheet" href="./css/bootstrap.min.css"> 删掉/css/前边的.（点）   (常用)
-2.index.html里<link rel="stylesheet" href="%PUBLIC_URL%/css/bootstrap.min.css"> 把.（点）改成%PUBLIC_URL%   (常用)
-3.index.js里改路由的模式，把BrowserRouter改成HashRouter(很少用这种方法)
+路由的基本使用：
+1.明确好界面中的导航区、展示区
+2.导航区的a标签改为Link标签，<Link to="/xxx">xxx</Link>
+3.展示区写Route标签进行路径的匹配<Route path="/xxx" component={xxx}/>
+4.App的最外层包裹一个<BrowserRouter></BrowserRouter>或<HashRouter></HashRouter>，用于管理整个应用的路由
+
+路由组件与一般组件：
+1.写法不同：
+一般组件：<Demo/>
+路由组件<Route path="/demo" component={Demo}/>
+
+2.存放位置不同：
+一般组件：components
+路由组件：pages
+
+3.接收到的props不同：
+一般组件：写组件标签时传递了什么，就能收到什么
+路由组件：接收到三个固定属性：
+history:
+    go:f go(n)
+    goBack: f goBack()
+    goForward: f goForward()
+    push: f push(path,state)
+    replace: f replace(path,state)
+location:
+    pathname: "/about"
+    search: ""
+    state: undefined
+match:
+    params:{}
+    path:"/about"
+    url:"/about"
+
+
+标签体的内容可以写在children属性里边
+<NavLink activeClassName="atguigu" className="list-group-item" to="/about">About</NavLink>
+<NavLink activeClassName="atguigu" className="list-group-item" to="/about" children="About" />
+所以自己封装的MyNavLink可以通过 {...this.props}拿到 标签体的内容
 */
 }
