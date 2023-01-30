@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Route,Switch} from 'react-router-dom'
+import {Route,Switch,Redirect} from 'react-router-dom'
 import Home from './pages/Home/Home' //Home是路由组件
 import About from './pages/About/About'//About是路由组件
 import Header from './components/Header/Header' //Header是一般组件
@@ -24,8 +24,8 @@ render() {
                         <a href="./home.html" class="list-group-item active">Home</a> */}
 
 						{/* 在React中靠路由链接实现切换组件 --编写路由链接*/}
-						<MyNavLink to="/atguigu/about">About</MyNavLink>
-						<MyNavLink to="/atguigu/home">Home</MyNavLink>
+						<MyNavLink to="/about">About</MyNavLink>
+						<MyNavLink to="/home">Home</MyNavLink>
                         {/* activeClassName="active"如果要加的高亮的class名是active，这句就可以不写了，要加高亮的class名是其他的名字，写成activeClassName="active"*/}
                     </div>
                 </div>
@@ -34,8 +34,9 @@ render() {
                         <div className="panel-body">
 							{/* 注册路由,注册路由的时候用Switch包一下，这样不会匹配到重复的路由,注意一个以上的路由再包Switch */}
                             <Switch>
-                                <Route path="/atguigu/about" component={About}/>
-                                <Route path="/atguigu/home" component={Home}/>
+                                <Route path="/about" component={About}/>
+                                <Route path="/home" component={Home}/>
+                                <Redirect to="/about" />
                             </Switch>
                         </div>
                     </div>
@@ -45,9 +46,12 @@ render() {
         )
     }
 /*
-如果路由是多级的第一次加载完之后再刷新页面，会出现样式丢失，解决办法：
-1.index.html里<link rel="stylesheet" href="./css/bootstrap.min.css"> 删掉/css/前边的.（点）   (常用)
-2.index.html里<link rel="stylesheet" href="%PUBLIC_URL%/css/bootstrap.min.css"> 把.（点）改成%PUBLIC_URL%   (常用)
-3.index.js里改路由的模式，把BrowserRouter改成HashRouter(很少用这种方法)
+Redirect的使用
+1.一般卸载所有路由注册的最下方，当所有路由都无法匹配时，跳转到Redirect指定的路由
+<Switch>
+    <Route path="/about" component={About}/>
+    <Route path="/home" component={Home}/>
+    <Redirect to="/about" />
+</Switch>
 */
 }
