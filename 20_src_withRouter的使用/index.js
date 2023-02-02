@@ -2,13 +2,14 @@
 import React from "react"
 //引入ReactDOM
 import ReactDOM from "react-dom"
-
+//引入BrowserRouter
+import {BrowserRouter} from "react-router-dom"
 //引入App组件
 import App from "./App" //.js可以省略
 
 //渲染App到页面
 ReactDOM.render(
-    <App/>,
+    <BrowserRouter><App/></BrowserRouter>,
     document.getElementById("root")
 )
 

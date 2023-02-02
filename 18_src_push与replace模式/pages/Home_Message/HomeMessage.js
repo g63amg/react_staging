@@ -23,7 +23,10 @@ export default class HomeMessage extends Component {
                     {/* <Link to={`/home/homemessage/homemessagedetail/${msgObj.id}/${msgObj.title}`}>{msgObj.title}</Link> */}
 
                     {/*向路由组件传递search参数  */}
-                    <Link to={`/home/homemessage/homemessagedetail/?id=${msgObj.id}&title=${msgObj.title}`}>{msgObj.title}</Link>
+                    {/* <Link to={`/home/homemessage/homemessagedetail/?id=${msgObj.id}&title=${msgObj.title}`}>{msgObj.title}</Link> */}
+
+                    {/* 向路由组件传递state参数 */}
+                    <Link to={{pathname:"/home/homemessage/homemessagedetail",state:{id:msgObj.id,title:msgObj.title}}}>{msgObj.title}</Link>
                   </li>
                 )
               })
@@ -34,20 +37,17 @@ export default class HomeMessage extends Component {
           {/* <Route path="/home/homemessage/homemessagedetail/:id/:title" component={HomeMessageDetail}/> */}
 
           {/* search参数无需声明接收，正常注册路由即可 */}
-          <Route path="/home/homemessage/homemessagedetail" component={HomeMessageDetail}/>
+          {/* <Route path="/home/homemessage/homemessagedetail" component={HomeMessageDetail}/> */}
+
+          {/* state参数无需声明接收，正常注册路由即可 */}
+          <Route replace={true} path="/home/homemessage/homemessagedetail" component={HomeMessageDetail}/>
 
         </div>
     )
   }
-  /*
-  1.params参数
-    a.路由链接（携带参数）<Link to={`/home/homemessage/homemessagedetail/${msgObj.id}/${msgObj.title}`}>{msgObj.title}</Link>
-    b.注册路由（声明接收）<Route path="/home/homemessage/homemessagedetail/:id/:title" component={HomeMessageDetail}/>
-    c.接收参数：const{id,title} = this.props.match.params
-
-  2.search参数
-    a.路由链接（携带参数）<Link to={`/home/homemessage/homemessagedetail/?id=${msgObj.id}&title=${msgObj.title}`}>{msgObj.title}</Link>
-    b.注册路由（无需声明，正常注册即可）<Route path="/home/homemessage/homemessagedetail" component={HomeMessageDetail}/>
-    c.接受参数const {search} = this.props.location，备注：获取到的search是urlencoded编码字符串，需要借助querystring解析
-  */
+/*
+路由的两种模式：push，replace
+push模式是默认的，比如按顺序点击About--Home--News--Message--消息1，回退的时候逐级回退
+replace模式，比如<Route replace={true} path="/home/homemessage/homemessagedetail" component={HomeMessageDetail}/>在会退的时候About--Home--News直接到News
+*/
 }
