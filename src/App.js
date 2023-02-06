@@ -1,5 +1,6 @@
 import React,{Component} from "react";
-import Demo from "./components/1_setState/setState"
+import Demo from "./components/2_lazyload/lazyload"
+
 
 export default class App extends Component {
   render() {

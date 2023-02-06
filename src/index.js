@@ -6,7 +6,9 @@ import ReactDOM from "react-dom"
 //引入App组件
 import App from "./App" //.js可以省略
 
-ReactDOM.render(<App/>,document.getElementById("root"))
+import { BrowserRouter } from "react-router-dom";
+
+ReactDOM.render(<BrowserRouter><App/></BrowserRouter>,document.getElementById("root"))
 
 
 
