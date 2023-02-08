@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import Parent from "./components/6_optimize/optimize"
+import Parent from "./components/8_ErrorBoundary/Parent"
 
 
 export default class App extends Component {
